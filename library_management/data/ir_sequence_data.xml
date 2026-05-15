@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_library_member" model="ir.sequence">
+        <name>Secuencia de Socio de Biblioteca</name>
+        <code>res.partner.library.seq</code>
+        <prefix>LIB-</prefix>
+        <padding>4</padding>
+        <company_id eval="False"/>
+    </record>
+</odoo>

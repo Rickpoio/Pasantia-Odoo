@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_inherit_library" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.library</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="after">
+                <group string="Información sobre la Biblioteca" name="library_info">
+                    <field name="is_library_member"/>
+                    <field name="library_member_code" invisible="not is_library_member" readonly="1"/>
+                    <field name="membership_date" invisible="not is_library_member"/>
+                    <field name="active_loan_count" invisible="not is_library_member" readonly="1"/>
+                </group>      
+            </xpath>
+        </field>
+    </record>
+</odoo>

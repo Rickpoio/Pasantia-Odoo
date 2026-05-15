@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_library_root" name="Biblioteca" sequence="10"/>
+    
+    <menuitem id="menu_library_catalog" name="Catálogo" parent="menu_library_root" sequence="10"/>
+    
+    <menuitem id="menu_book_list" name="Libros" parent="menu_library_catalog" action="action_library_book" sequence="10"/>
+</odoo>

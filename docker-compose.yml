@@ -20,7 +20,7 @@ services:
     environment:
       - HOST=${ODOO_HOST}
       - USER=${POSTGRES_USER}
-      - PASSWORD={POSTGRES_PASSWORD}
+      - PASSWORD=${POSTGRES_PASSWORD}
 
 volumes:
   odoo-db-data:
