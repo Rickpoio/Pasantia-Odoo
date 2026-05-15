@@ -1,0 +1,4 @@
+.env
+odoo-db-data/
+odoo-web-data/
+**/__pycache__/
