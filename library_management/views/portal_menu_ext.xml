@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_home_menu_library" inherit_id="portal.portal_breadcrumbs" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'my_loans'" class="breadcrumb-item active">
+                Mis Préstamos
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_library" inherit_id="portal.portal_my_home" priority="20">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Mis Préstamos de Libros</t>
+                <t t-set="url" t-value="'/my/loans'"/>
+                <t t-set="placeholder_count" t-value="len(request.env['library.loan'].search([('partner_id', '=', request.env.user.partner_id.id)]))"/>
+            </t>
+        </xpath>
+    </template>
+</odoo>

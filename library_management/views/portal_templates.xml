@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_loans_template" name="Mis Préstamos">
+        <t t-call="portal.portal_layout">
+            <t t-set="prev_record" t-value="None"/>
+            <t t-set="next_record" t-value="None"/>
+            
+            <div class="container mt-4">
+                <h3>Mis Préstamos de Libros</h3>
+                <table class="table table-striped mt-3">
+                    <thead>
+                        <tr>
+                            <th>Libro</th>
+                            <th>Fecha Préstamo</th>
+                            <th>Estado</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="loans" t-as="loan">
+                            <tr>
+                                <td><t t-out="loan.book_id.name"/></td>
+                                <td><t t-out="loan.loan_date"/></td>
+                                <td>
+                                    <span t-attf-class="badge #{'bg-info' if loan.state == 'ongoing' else 'bg-success' if loan.state == 'returned' else 'bg-danger'}">
+                                        <t t-out="dict(loan._fields['state'].selection).get(loan.state)"/>
+                                    </span>
+                                </td>
+                                <td>
+                                    <a t-if="loan.state == 'ongoing'" 
+                                       t-attf-href="/my/loans/renew/#{loan.id}" 
+                                       class="btn btn-sm btn-primary">Renovar (+7 días)</a>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>
