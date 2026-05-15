@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_library_book_tree" model="ir.ui.view">
-        <field name="name">library.book.tree</field>
+    <record id="view_library_book_list" model="ir.ui.view">
+        <field name="name">library.book.list</field>
         <field name="model">library.book</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="author_id"/>
-                <field name="publication_date"/>
                 <field name="years_since_publication"/>
                 <field name="is_available" widget="boolean_toggle"/>
-            </tree>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_library_book_form" model="ir.ui.view">
+        <field name="name">library.book.form</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="author_id"/>
+                        <field name="isbn"/>
+                        <field name="publication_date"/>
+                        <field name="is_available"/>
+                    </group>
+                </sheet>
+            </form>
         </field>
     </record>
 
@@ -21,12 +38,13 @@
             <search>
                 <field name="name"/>
                 <field name="author_id"/>
+                <separator/>
                 <filter string="Disponibles" name="available" domain="[('is_available', '=', True)]"/>
                 <filter string="No Disponibles" name="not_available" domain="[('is_available', '=', False)]"/>
                 <separator/>
-                <group expand="0" string="Agrupar por">
+                <group>
                     <filter string="Autor" name="group_author" context="{'group_by': 'author_id'}"/>
-                    <filter string="Año de Publicación" name="group_year" context="{'group_by': 'publication_date:year'}"/>
+                    <filter string="Año" name="group_year" context="{'group_by': 'publication_date:year'}"/>
                 </group>
             </search>
         </field>
@@ -35,6 +53,6 @@
     <record id="action_library_book" model="ir.actions.act_window">
         <field name="name">Catálogo de Libros</field>
         <field name="res_model">library.book</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>
